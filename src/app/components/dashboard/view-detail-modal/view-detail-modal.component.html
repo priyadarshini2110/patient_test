@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <h4 class="modal-title">Patient Details - {{patient.patientName}} ({{patient.mrn}})</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col">
+            <ngb-tabset #t="ngbTabset">
+                <ngb-tab id="tab-selectbyid1" title="Narrative">
+                    <ng-template ngbTabContent>
+                        
+                            <ul >
+                                <li *ngFor="let narrative of patient.narratives">{{narrative.obxText}}</li>
+                            </ul>
+                         
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="tab-selectbyid2">
+                    <ng-template ngbTabTitle>Vitals</ng-template>
+                    <ng-template ngbTabContent>
+                        <!-- <canvas id="viewcanvas" width="300" height="300" style="border:1px solid ;">
+                        </canvas> -->
+                        <div class="card-body custom-datatable">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th >Message Id</th>
+                                            <th >Time</th>
+                                            <th >OBXText</th>
+                                            <th >OBXValue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let vital of patient.vitals | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i =index" >                                            
+                                            <td>{{vital.msgId}}</td>
+                                            <td>{{vital.createDtime}}</td>
+                                            <td>{{vital.obxText}}</td>
+                                            <td>{{vital.obxValue}} {{vital.observationUnits}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="card-body pagination-space" style="padding: 0px;">
+                            <div class="pagination-top">
+                                <ngb-pagination [pageSize]="11" [collectionSize]="patient.vitals.length" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                            </div>
+                            <!-- <hr> -->
+                            <!-- <pre class="mb-0">Current page: {{page}}</pre> -->
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="tab-selectbyid3">
+                    <ng-template ngbTabTitle>EKG</ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="container-fluid">
+                            <div class="row justify-content-md-center" style="padding-bottom: 2em;">
+                                <div class="col">
+                                    <img style="width: 50em;height: 25em;"
+                                    src='{{"assets/images/EKG.png"}}' alt="item">
+                                    <!--                                     
+                                    <a class="badge badge-primary" *ngFor="let item of pdfActions"
+                                        (click)="handlingActions(item)" href="javascript:void(0)">
+                                        <app-feather-icons [icon]="item.icon"></app-feather-icons>
+                                    </a> -->
+                                </div>
+                            </div>
+                            <!-- <pdf-viewer [src]="pdfSrc" [(page)]="pageVariable" [render-text]="true"
+                                [show-borders]="true" [zoom]="zoom" [original-size]="true" style="display: block;">
+                            </pdf-viewer> -->
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

@@ -1,0 +1,212 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col" *ngFor="let item of dashBoardArray" (click)="onMetricSelect(item)">
+                            <div class="shadow p-0 mb-5 bg-white rounded" style="cursor: pointer;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img style="width: 4em;height: 4em;"
+                                                src='{{"assets/images/svg/"+item.icon+".svg"}}' alt="item">
+                                                <!-- <h3 style="font-size: 15px;">{{item.type}} : {{item.count}}</h3> -->
+                                                <!-- <h2 style="font-size: 15px;">{{item.type}}</h2> -->
+                                        </div>
+                                        <div class="col">
+                                            <h3><b>{{item.count}}</b></h3>
+                                            <p style="font-size: 15px;">{{item.type}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="faq-form">
+                                <input class="form-control" type="text" [(ngModel)]="searchString" 
+                                    (input)="textSearch()" placeholder="Instant Search">
+                                    <app-feather-icons class="search-icon" [icon]="'search'"></app-feather-icons>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-4">
+                            <div class="btn-group" role="group">
+                                <button *ngFor="let item of buttonFilters" (click)="onButtonSelect(item)"
+                                    class="btn btn-outline-dark" type="button">{{item.name}}</button>
+                            </div>
+                        </div> -->
+
+                        <div class="col-sm-8">
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-auto" *ngFor="let item of buttonFilters">
+                                    <button class='{{"btn btn-pill btn-"+item.color+" btn-air-"+item.color}}' type="button"
+                                        style="width: 12em;height: 3em;" (click)="onButtonSelect(item)"
+                                        class="btn btn-outline-dark" placement="top">{{item.name}}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-2 align-self-end">
+                            <!-- <del class="form-control digits" type="date" value="{{selectedDate}}"> -->
+                            <!-- <form class="form-inline custom-datepicker custom-datepicker-dropdown"> -->
+                            <!-- <div class="form-group mb-0"> -->
+                            <div class="input-group">
+                                <input class="form-control" placeholder="mm/dd/yyyy" name="dp"
+                                    [(ngModel)]="selectedDate" (ngModelChange)="onDateSelect()" ngbDatepicker
+                                    [footerTemplate]="footerTemplate" #f="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn calendar" (click)="f.toggle()" type="button"><i
+                                            class="fa fa-calendar"></i></button>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                            <!-- </form> -->
+                            <ng-template #footerTemplate>
+                                <hr class="my-0">
+                                <button class="btn btn-primary btn-sm m-2 float-left"
+                                    (click)="model = today; f.close()">Today</button>
+                                <button class="btn btn-secondary btn-sm m-2 float-right"
+                                    (click)="f.close()">Close</button>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body custom-datatable" style="padding: 5px;">
+                    <!-- <ngx-datatable style="width: 100%" class="bootstrap" [rows]="data" [columnMode]="'force'"
+                        [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5" [selected]="selected"
+                        [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" (select)='onSelect($event)'>
+                        <ngx-datatable-column [width]="30" [sortable]="true" [canAutoResize]="true" [draggable]="false"
+                            [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="TIME"></ngx-datatable-column>
+                        <ngx-datatable-column name="ID/MRN"></ngx-datatable-column>
+                        <ngx-datatable-column name="NAME"></ngx-datatable-column>
+                        <ngx-datatable-column name="DOB"></ngx-datatable-column>
+                        <ngx-datatable-column name="GENDER"></ngx-datatable-column>
+                        <ngx-datatable-column [width]="300" name="ADDRESS"></ngx-datatable-column>
+                        <ngx-datatable-column [width]="200" name="SMMC STATUS">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <button class='{{"btn btn-"+row.statusColor+" btn-sm"}}'
+                                    style="width: 12em;height: 5em;" type="button"
+                                    placement="top">{{row.smmcStatus}}</button>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="STATUS">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <button class="btn btn-info btn-sm" type="button"
+                                    placement="top">{{row.status}}</button>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="DETAIL">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <button class="btn btn-outline-info btn-square btn-sm" type="button" placement="top"
+                                    (click)="openModal()" ngbTooltip='{{row.name}}'>View detail</button>
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable> -->
+
+                    <!-- Bootstrap table Start -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" *ngFor="let item of tableColumns;">{{item}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of sortedData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i =index" >
+                                    <th>
+                                        <input *ngIf="item.visitOccurance <= 1  " type="checkbox" (click)="onSelect($event,item.msgId)">
+                                    </th>
+                                    <!-- <th *ngIf="item.visitOccurance>1;">
+                                        <input *ngIf="item.visitOccurance==0 || item.visitOccurance==1" type="checkbox" id="checkbx"  (click)="onSelect($event,item.msgId)">
+                                    </th> -->
+                                    <!-- <th *ngIf="item.visitOccurance==0 || item.visitOccurance==1">
+                                            <input *ngIf="item.visitOccurance==0 || item.visitOccurance==1"  type="checkbox" id="checkbx"  (click)="onSelect($event,item.msgId)">
+                                        </th> -->
+                                    <!-- <th >
+                                            <input *ngIf="item.status!='Discharged'" id="solid3" type="checkbox"
+                                                item.isSelected (click)="onSelect(item)">
+                                        </th> -->
+                                        <th *ngIf="item.visitOccurance>1" scope="row"><del>{{item.mrn}}</del></th>
+                                    <th *ngIf="item.visitOccurance==0 || item.visitOccurance==1" scope="row">{{item.mrn}}</th>
+                                    <td *ngIf="item.visitOccurance>1"><del>{{item.admitdateTimeId}}</del></td>
+                                    <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1" >{{item.admitdateTimeId}}</td>
+                                    <td *ngIf="item.visitOccurance>1"><del>{{item.patientName}}</del></td>
+                                    <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1">{{item.patientName}}</td>
+                                    <td *ngIf="item.visitOccurance>1"><del>{{item.dob | date:'longDate'}}</del></td>
+                                    <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1">{{item.dob | date:'longDate'}}</td>
+                                    <td *ngIf="item.visitOccurance>1"><del>{{item.streetAddress}}</del></td>
+                                    <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1">{{item.streetAddress}}</td>
+                                                                        
+                                    <td *ngIf="item.visitOccurance>1 ">
+                                        <button class='{{"btn btn-"+item.color+" btn-sm"}}'
+                                            style="width: 17em;font-weight: bold;" type="button"
+                                            placement="top"><del>{{item.smmcStatus}}</del></button>
+                                    </td>
+                                    <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1">
+                                            <button class='{{"btn btn-"+item.color+" btn-sm"}}'
+                                                style="width: 17em;font-weight: bold;" type="button"
+                                                placement="top">{{item.smmcStatus}}</button>
+                                        </td>
+
+                                       
+                                    <!-- <td *ngIf="item.status==null">
+                                        <b>-</b>
+                                    </td> -->
+                                    <td *ngIf="item.visitOccurance>1 ">
+                                            <button class='{{"btn btn-"+item.color+" btn-sm"}}' style="width: 12em;font-weight: bold;"
+                                                type="button" placement="top"><del>{{item.status}}</del></button>
+                                        </td>
+                                        <td *ngIf="item.visitOccurance==0 || item.visitOccurance==1">
+                                        <button class='{{"btn btn-"+item.color+" btn-sm"}}' style="width: 12em;font-weight: bold;"
+                                            type="button" placement="top">{{item.status}}</button>
+                                    </td>
+                                    <td>
+                                        <button *ngIf="item.visitOccurance >1 && item.smmcStatus !='Patient Diverted' "
+                                            class="btn btn-outline-info btn-square btn-sm" type="button"
+                                            placement="top" (click)="openModal(item)" ngbTooltip='{{item.patientName}}'><del>View detail</del></button>
+                                        <button *ngIf="item.visitOccurance <=1 && item.smmcStatus !='Patient Diverted' "
+                                            class="btn btn-outline-info btn-square btn-sm" type="button"
+                                            placement="top" (click)="openModal(item)" ngbTooltip='{{item.patientName}}'>View detail</button>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Bootstrap table End -->
+                    <div class="card-body pagination-space" style="padding: 0px;">
+                        <div class="pagination-top">
+                            <ngb-pagination [pageSize]="5" [collectionSize]="sortedData.length" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                        </div>
+                        <!-- <hr> -->
+                        <!-- <pre class="mb-0">Current page: {{page}}</pre> -->
+                    </div>
+                </div>
+               
+                <div class="card-footer" style="padding: 5px;">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-auto" *ngFor="let item of resultButtons">
+                            <button class='{{"btn btn-pill btn-"+item.color+" btn-air-"+item.color}}' type="button"
+                                style="width: 16em;height: 3.5em;font-weight: bold;" (click)="handleActions(item)"
+                                placement="top" ngbTooltip='{{item.name}}'>{{item.name}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card">
+                <div class="card-body pagination-space">
+                    <div class="pagination-top">
+                        <p>With boundary links:</p>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                    <hr>
+                    <pre class="mb-0">Current page: {{page}}</pre>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

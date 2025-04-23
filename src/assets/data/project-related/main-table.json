@@ -1,0 +1,38 @@
+[
+    {
+        "time": "12.10",
+        "idMrn": "0001123",
+        "name": "Ethel Price",
+        "dob": "Jun 03, 1973",
+        "gender": "female",
+        "address": "Johnson, Johnson and Partners, LLC CMP DDC ghb jnvhdl lmhjobdlunbd",
+        "smmcStatus": "Accept Patient Transfer",
+        "status": "Arrived",
+        "id": 22,
+        "statusColor": "success"
+    },
+    {
+        "time": "12.30",
+        "idMrn": "0001145",
+        "name": "Sam Do",
+        "dob": "July 10, 1983",
+        "gender": "male",
+        "address": "345 Ham street",
+        "smmcStatus": "Patient Diverted",
+        "status": "Open",
+        "id": 23,
+        "statusColor": "danger"
+    },
+    {
+        "time": "13.50",
+        "idMrn": "0001147",
+        "name": "Emanual Pack",
+        "dob": "Dec 12, 1989",
+        "gender": "male",
+        "address": "25 Jambu street",
+        "smmcStatus": "Bed Waiting",
+        "status": "Open",
+        "id": 23,
+        "statusColor": "warning"
+    }
+]
